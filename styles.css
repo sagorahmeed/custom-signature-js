@@ -1,0 +1,23 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+  position: relative;
+}
+
+canvas {
+  cursor: crosshair;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+.convas-wrapper{
+  border: 1px solid black;
+  overflow: hidden;
+}
+#controls input[type="color"], #controls input[type="range"], #controls button {
+  margin-right: 10px;
+}
