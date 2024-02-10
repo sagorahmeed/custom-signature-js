@@ -128,9 +128,21 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-     function rotatePaths(angle) {
-        drawingArea.style.transform = `rotate(${angle}deg)`;
-     }
+    //  function rotatePaths(angle) {
+    //     drawingArea.style.transform = `rotate(${angle}deg)`;
+    //  }
+
+    function rotatePaths(angle) {
+        // Calculate the center of the drawing area
+        const centerX = drawingArea.clientWidth / 2;
+        const centerY = drawingArea.clientHeight / 2;
+    
+        // Apply the rotation to each path around the center of the drawing area
+        paths.forEach(path => {
+            path.style.transformOrigin = `${centerX}px ${centerY}px`; // Set rotation origin
+            path.style.transform = `rotate(${angle}deg)`; // Apply rotation to each path
+        });
+    }
     // function rotatePaths(angle) {
     //     // Calculate the bounding box of all paths
     //     const bbox = drawingArea.getBBox();
