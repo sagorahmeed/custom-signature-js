@@ -1,63 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simple Drawing App</title>
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Drawing App</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<!-- <div id="container">
-    <div class="convas-wrapper">
+    <div id="container">
+        <div id="controls">
+            <input type="color" id="colorPicker">
+            <input type="range" id="brushSize" min="1" max="50" value="5">
+            <input type="range" id="angle" min="0" max="360" value="0">
+            <button id="clearBtn">Clear</button>
+            <button id="downloadBtn">Download</button>
+            <!-- Add color buttons for default colors -->
+            <button class="color-btn" style="background-color: #000000;"></button>
+            <button class="color-btn" style="background-color: #ff0000;"></button>
+            <button class="color-btn" style="background-color: #00ff00;"></button>
+            <button class="color-btn" style="background-color: #0000ff;"></button>
+            <button class="color-btn" style="background-color: #ffff00;"></button>
+            <button class="color-btn" style="background-color: #ff00ff;"></button>
+        </div>
+        <!-- SVG to display selected color in real-time -->
+        <!-- <svg id="drawingArea" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"></svg> -->
+        <div id="svgWrapper"  width="100%" height="100%">
+            <svg id="drawingArea" width="600" height="300" xmlns="http://www.w3.org/2000/svg" style="background-color: transparent;"></svg>
+        </div>
 
-        <canvas id="canvas"></canvas>
     </div>
-    <div id="controls">
-        <input type="color" id="colorPicker">
-        <input type="range" id="brushSize" min="1" max="50" value="5">
-        <input type="range" id="angle" min="0" max="360" value="0">
-        <button id="clearBtn">Clear</button>
-        <button id="downloadBtn">Download</button>
-    </div>
-</div> -->
-
-<!-- <div id="container">
-    <div class="convas-wrapper">
-        <canvas id="canvas"></canvas>
-    </div>
-    <div id="controls">
-        <input type="color" id="colorPicker">
-        <input type="range" id="brushSize" min="1" max="50" value="5">
-        <input type="range" id="angle" min="0" max="360" value="0">
-        <button id="clearBtn">Clear</button>
-        <button id="downloadBtn">Download</button>
-        <button class="color-btn" style="background-color: #ff0000;"></button>
-        <button class="color-btn" style="background-color: #00ff00;"></button>
-        <button class="color-btn" style="background-color: #0000ff;"></button>
-        <button class="color-btn" style="background-color: #ffff00;"></button>
-        <button class="color-btn" style="background-color: #ff00ff;"></button>
-    </div>
-</div> -->
-
-<div id="container">
-    <div class="convas-wrapper">
-        <canvas id="canvas"></canvas>
-    </div>
-    <div id="controls">
-        <input type="color" id="colorPicker">
-        <input type="range" id="brushSize" min="1" max="50" value="5">
-        <input type="range" id="angle" min="0" max="360" value="0">
-        <button id="clearBtn">Clear</button>
-        <button id="downloadBtn">Download</button>
-        <!-- Add color buttons for default colors -->
-        <button class="color-btn" style="background-color: #000000;"></button>
-        <button class="color-btn" style="background-color: #ff0000;"></button>
-        <button class="color-btn" style="background-color: #00ff00;"></button>
-        <button class="color-btn" style="background-color: #0000ff;"></button>
-        <button class="color-btn" style="background-color: #ffff00;"></button>
-        <button class="color-btn" style="background-color: #ff00ff;"></button>
-    </div>
-</div>
-<script src="app.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

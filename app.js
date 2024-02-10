@@ -1,444 +1,125 @@
-// // document.addEventListener("DOMContentLoaded", function() {
-// //     const canvas = document.getElementById("canvas");
-// //     const ctx = canvas.getContext("2d");
-// //     const colorPicker = document.getElementById("colorPicker");
-// //     const brushSize = document.getElementById("brushSize");
-// //     const angleInput = document.getElementById("angle");
-// //     const clearBtn = document.getElementById("clearBtn");
-// //     const downloadBtn = document.getElementById("downloadBtn");
-    
-// //     let isDrawing = false;
-// //     let lastX = 0;
-// //     let lastY = 0;
-// //     let hue = 0;
-    
-// //     canvas.width = window.innerWidth - 20;
-// //     canvas.height = window.innerHeight - 20;
-// //     ctx.lineJoin = "round";
-// //     ctx.lineCap = "round";
-    
-// //     function draw(e) {
-// //         if (!isDrawing) return;
-// //         ctx.strokeStyle = colorPicker.value;
-// //         ctx.lineWidth = brushSize.value;
-// //         ctx.beginPath();
-// //         ctx.moveTo(lastX, lastY);
-// //         ctx.lineTo(e.offsetX, e.offsetY);
-// //         ctx.stroke();
-// //         [lastX, lastY] = [e.offsetX, e.offsetY];
-// //         hue++;
-// //         ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
-// //     }
-    
-// //     canvas.addEventListener("mousedown", (e) => {
-// //         isDrawing = true;
-// //         [lastX, lastY] = [e.offsetX, e.offsetY];
-// //     });
-    
-// //     canvas.addEventListener("mousemove", draw);
-// //     canvas.addEventListener("mouseup", () => isDrawing = false);
-// //     canvas.addEventListener("mouseout", () => isDrawing = false);
-    
-// //     clearBtn.addEventListener("click", () => {
-// //         ctx.clearRect(0, 0, canvas.width, canvas.height);
-// //     });
-
-// //     downloadBtn.addEventListener("click", () => {
-// //         const dataUrl = canvas.toDataURL('image/png');
-// //         const link = document.createElement('a');
-// //         link.href = dataUrl;
-// //         link.download = 'drawing.png';
-// //         link.click();
-// //     });
-
-// //     angleInput.addEventListener("input", () => {
-// //         canvas.style.transform = `rotate(${angleInput.value}deg)`;
-// //     });
-// // });
-
-
-// document.addEventListener("DOMContentLoaded", function() {
-//     const canvas = document.getElementById("canvas");
-//     const ctx = canvas.getContext("2d");
-//     const colorPicker = document.getElementById("colorPicker");
-//     const brushSize = document.getElementById("brushSize");
-//     const angleInput = document.getElementById("angle");
-//     const clearBtn = document.getElementById("clearBtn");
-//     const downloadBtn = document.getElementById("downloadBtn");
-//     const cursorOverlay = document.createElement("div");
-//     cursorOverlay.classList.add("cursor-overlay");
-//     document.body.appendChild(cursorOverlay);
-
-//     let isDrawing = false;
-//     let lastX = 0;
-//     let lastY = 0;
-//     let hue = 0;
-    
-//     canvas.width = window.innerWidth - 20;
-//     canvas.height = window.innerHeight - 20;
-//     ctx.lineJoin = "round";
-//     ctx.lineCap = "round";
-    
-//     function draw(e) {
-//         if (!isDrawing) return;
-//         ctx.strokeStyle = colorPicker.value;
-//         ctx.lineWidth = brushSize.value;
-//         ctx.beginPath();
-//         ctx.moveTo(lastX, lastY);
-//         ctx.lineTo(e.offsetX, e.offsetY);
-//         ctx.stroke();
-//         [lastX, lastY] = [e.offsetX, e.offsetY];
-//         hue++;
-//         ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
-
-//         // Adjust the cursor position
-//         cursorOverlay.style.left = `${e.pageX - brushSize.value / 2}px`;
-//         cursorOverlay.style.top = `${e.pageY - brushSize.value / 2}px`;
-//     }
-    
-//     canvas.addEventListener("mousedown", (e) => {
-//         isDrawing = true;
-//         [lastX, lastY] = [e.offsetX, e.offsetY];
-//     });
-    
-//     canvas.addEventListener("mousemove", draw);
-//     canvas.addEventListener("mouseup", () => isDrawing = false);
-//     canvas.addEventListener("mouseout", () => isDrawing = false);
-    
-//     clearBtn.addEventListener("click", () => {
-//         ctx.clearRect(0, 0, canvas.width, canvas.height);
-//     });
-
-//     // downloadBtn.addEventListener("click", () => {
-//     //     const dataUrl = canvas.toDataURL('image/png');
-//     //     const link = document.createElement('a');
-//     //     link.href = dataUrl;
-//     //     link.download = 'drawing.png';
-//     //     link.click();
-//     // });
-
-//     downloadBtn.addEventListener("click", () => {
-//         const dataUrl = rotateAndExportCanvas();
-//         const link = document.createElement('a');
-//         link.href = dataUrl;
-//         link.download = 'drawing.png';
-//         link.click();
-//     });
-
-//     function rotateAndExportCanvas() {
-//     const tempCanvas = document.createElement('canvas');
-//     tempCanvas.width = canvas.width;
-//     tempCanvas.height = canvas.height;
-//     const tempCtx = tempCanvas.getContext('2d');
-
-//     // Rotate the temporary canvas context
-//     tempCtx.translate(canvas.width / 2, canvas.height / 2);
-//     tempCtx.rotate(angleInput.value * Math.PI / 180);
-//     tempCtx.translate(-canvas.width / 2, -canvas.height / 2);
-//     tempCtx.drawImage(canvas, 0, 0);
-
-//     // Export the rotated canvas as data URL
-//     return tempCanvas.toDataURL('image/png');
-// }
-
-//     angleInput.addEventListener("input", () => {
-//         canvas.style.transform = `rotate(${angleInput.value}deg)`;
-//     });
-// });
-
-
-// document.addEventListener("DOMContentLoaded", function() {
-//     const canvas = document.getElementById("canvas");
-//     const ctx = canvas.getContext("2d");
-//     const colorPicker = document.getElementById("colorPicker");
-//     const brushSize = document.getElementById("brushSize");
-//     const angleInput = document.getElementById("angle");
-//     const clearBtn = document.getElementById("clearBtn");
-//     const downloadBtn = document.getElementById("downloadBtn");
-//     const cursorOverlay = document.createElement("div");
-//     cursorOverlay.classList.add("cursor-overlay");
-//     document.body.appendChild(cursorOverlay);
-
-//     let isDrawing = false;
-//     let lastX = 0;
-//     let lastY = 0;
-//     let hue = 0;
-//     const defaultColors = ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff"]; // Define your default colors here
-    
-//     canvas.width = window.innerWidth - 20;
-//     canvas.height = window.innerHeight - 20;
-//     ctx.lineJoin = "round";
-//     ctx.lineCap = "round";
-
-//     // Function to set the color from the default colors array
-//     function setColorFromDefault(index) {
-//         colorPicker.value = defaultColors[index];
-//     }
-
-//     // Set the initial color to the first color in the default colors array
-//     setColorFromDefault(0);
-
-//     function draw(e) {
-//         if (!isDrawing) return;
-//         ctx.strokeStyle = colorPicker.value;
-//         ctx.lineWidth = brushSize.value;
-//         ctx.beginPath();
-//         ctx.moveTo(lastX, lastY);
-//         ctx.lineTo(e.offsetX, e.offsetY);
-//         ctx.stroke();
-//         [lastX, lastY] = [e.offsetX, e.offsetY];
-//         hue++;
-//         ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
-
-//         // Adjust the cursor position
-//         cursorOverlay.style.left = `${e.pageX - brushSize.value / 2}px`;
-//         cursorOverlay.style.top = `${e.pageY - brushSize.value / 2}px`;
-//     }
-    
-//     canvas.addEventListener("mousedown", (e) => {
-//         isDrawing = true;
-//         [lastX, lastY] = [e.offsetX, e.offsetY];
-//     });
-    
-//     canvas.addEventListener("mousemove", draw);
-//     canvas.addEventListener("mouseup", () => isDrawing = false);
-//     canvas.addEventListener("mouseout", () => isDrawing = false);
-    
-//     clearBtn.addEventListener("click", () => {
-//         ctx.clearRect(0, 0, canvas.width, canvas.height);
-//     });
-
-//     downloadBtn.addEventListener("click", () => {
-//         const dataUrl = rotateAndExportCanvas();
-//         const link = document.createElement('a');
-//         link.href = dataUrl;
-//         link.download = 'drawing.png';
-//         link.click();
-//     });
-
-//     function rotateAndExportCanvas() {
-//         const tempCanvas = document.createElement('canvas');
-//         tempCanvas.width = canvas.width;
-//         tempCanvas.height = canvas.height;
-//         const tempCtx = tempCanvas.getContext('2d');
-
-//         // Rotate the temporary canvas context
-//         tempCtx.translate(canvas.width / 2, canvas.height / 2);
-//         tempCtx.rotate(angleInput.value * Math.PI / 180);
-//         tempCtx.translate(-canvas.width / 2, -canvas.height / 2);
-//         tempCtx.drawImage(canvas, 0, 0);
-
-//         // Export the rotated canvas as data URL
-//         return tempCanvas.toDataURL('image/png');
-//     }
-
-//     angleInput.addEventListener("input", () => {
-//         canvas.style.transform = `rotate(${angleInput.value}deg)`;
-//     });
-
-//     // Add event listeners to each color button to set the color from the default colors array
-//     const colorButtons = document.querySelectorAll('.color-btn');
-//     colorButtons.forEach((button, index) => {
-//         button.addEventListener('click', () => {
-//             setColorFromDefault(index);
-//         });
-//     });
-// });
-
-
-// document.addEventListener("DOMContentLoaded", function() {
-//     const canvas = document.getElementById("canvas");
-//     const ctx = canvas.getContext("2d");
-//     const colorPicker = document.getElementById("colorPicker");
-//     const brushSize = document.getElementById("brushSize");
-//     const angleInput = document.getElementById("angle");
-//     const clearBtn = document.getElementById("clearBtn");
-//     const downloadBtn = document.getElementById("downloadBtn");
-//     const cursorOverlay = document.createElement("div");
-//     cursorOverlay.classList.add("cursor-overlay");
-//     document.body.appendChild(cursorOverlay);
-
-//     let isDrawing = false;
-//     let lastX = 0;
-//     let lastY = 0;
-//     let hue = 0;
-//     const defaultColors = ["#000000", "#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff"]; // Add black as the first color
-    
-//     canvas.width = window.innerWidth - 20;
-//     canvas.height = window.innerHeight - 20;
-//     ctx.lineJoin = "round";
-//     ctx.lineCap = "round";
-
-//     // Function to set the color from the default colors array
-//     function setColorFromDefault(index) {
-//         colorPicker.value = defaultColors[index];
-//     }
-
-//     // Set the initial color to black
-//     setColorFromDefault(0);
-
-//     function draw(e) {
-//         if (!isDrawing) return;
-//         ctx.strokeStyle = colorPicker.value;
-//         ctx.lineWidth = brushSize.value;
-//         ctx.beginPath();
-//         ctx.moveTo(lastX, lastY);
-//         ctx.lineTo(e.offsetX, e.offsetY);
-//         ctx.stroke();
-//         [lastX, lastY] = [e.offsetX, e.offsetY];
-//         hue++;
-//         ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
-
-//         // Adjust the cursor position
-//         cursorOverlay.style.left = `${e.pageX - brushSize.value / 2}px`;
-//         cursorOverlay.style.top = `${e.pageY - brushSize.value / 2}px`;
-//     }
-    
-//     canvas.addEventListener("mousedown", (e) => {
-//         isDrawing = true;
-//         [lastX, lastY] = [e.offsetX, e.offsetY];
-//     });
-    
-//     canvas.addEventListener("mousemove", draw);
-//     canvas.addEventListener("mouseup", () => isDrawing = false);
-//     canvas.addEventListener("mouseout", () => isDrawing = false);
-    
-//     clearBtn.addEventListener("click", () => {
-//         ctx.clearRect(0, 0, canvas.width, canvas.height);
-//     });
-
-//     downloadBtn.addEventListener("click", () => {
-//         const dataUrl = rotateAndExportCanvas();
-//         const link = document.createElement('a');
-//         link.href = dataUrl;
-//         link.download = 'drawing.png';
-//         link.click();
-//     });
-
-//     function rotateAndExportCanvas() {
-//         const tempCanvas = document.createElement('canvas');
-//         tempCanvas.width = canvas.width;
-//         tempCanvas.height = canvas.height;
-//         const tempCtx = tempCanvas.getContext('2d');
-
-//         // Rotate the temporary canvas context
-//         tempCtx.translate(canvas.width / 2, canvas.height / 2);
-//         tempCtx.rotate(angleInput.value * Math.PI / 180);
-//         tempCtx.translate(-canvas.width / 2, -canvas.height / 2);
-//         tempCtx.drawImage(canvas, 0, 0);
-
-//         // Export the rotated canvas as data URL
-//         return tempCanvas.toDataURL('image/png');
-//     }
-
-//     angleInput.addEventListener("input", () => {
-//         canvas.style.transform = `rotate(${angleInput.value}deg)`;
-//     });
-
-//     // Add event listeners to each color button to set the color from the default colors array
-//     const colorButtons = document.querySelectorAll('.color-btn');
-//     colorButtons.forEach((button, index) => {
-//         button.addEventListener('click', () => {
-//             setColorFromDefault(index);
-//         });
-//     });
-// });
-
 
 document.addEventListener("DOMContentLoaded", function() {
-    const canvas = document.getElementById("canvas");
-    const ctx = canvas.getContext("2d");
+    const drawingArea = document.getElementById("drawingArea");
+    const svgWrapper = document.getElementById("svgWrapper"); // New: Get svgWrapper element
     const colorPicker = document.getElementById("colorPicker");
     const brushSize = document.getElementById("brushSize");
-    const angleInput = document.getElementById("angle");
+    const angleInput = document.getElementById("angle"); // New: Angle input element
     const clearBtn = document.getElementById("clearBtn");
     const downloadBtn = document.getElementById("downloadBtn");
-    const cursorOverlay = document.createElement("div");
-    cursorOverlay.classList.add("cursor-overlay");
-    document.body.appendChild(cursorOverlay);
+    const colorButtons = document.querySelectorAll('.color-btn');
 
     let isDrawing = false;
     let lastX = 0;
     let lastY = 0;
-    let hue = 0;
-    const defaultColors = ["#000000", "#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff"]; // Add black as the first color
+    let currentColor = colorPicker.value;
+    let currentAngle = angleInput.value; // New: Store current angle
+    let currentFontSize = brushSize.value; // New: Store current font size
     
-    canvas.width = window.innerWidth - 20;
-    canvas.height = window.innerHeight - 20;
-    ctx.lineJoin = "round";
-    ctx.lineCap = "round";
-
-    // Function to set the color from the default colors array
-    function setColorFromDefault(index) {
-        colorPicker.value = defaultColors[index];
+    function startDrawing(e) {
+        isDrawing = true;
+        const svgPoint = drawingArea.createSVGPoint();
+        svgPoint.x = e.clientX;
+        svgPoint.y = e.clientY;
+        const point = svgPoint.matrixTransform(drawingArea.getScreenCTM().inverse());
+        lastX = point.x;
+        lastY = point.y;
     }
-
-    // Set the initial color to black
-    setColorFromDefault(0);
 
     function draw(e) {
         if (!isDrawing) return;
-        ctx.strokeStyle = colorPicker.value;
-        ctx.lineWidth = brushSize.value;
-        ctx.beginPath();
-        ctx.moveTo(lastX, lastY);
-        ctx.lineTo(e.offsetX, e.offsetY);
-        ctx.stroke();
-        [lastX, lastY] = [e.offsetX, e.offsetY];
-        hue++;
-        ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+        
+        const svgPoint = drawingArea.createSVGPoint();
+        svgPoint.x = e.clientX;
+        svgPoint.y = e.clientY;
+        const point = svgPoint.matrixTransform(drawingArea.getScreenCTM().inverse());
+        
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("x1", lastX);
+        line.setAttribute("y1", lastY);
+        line.setAttribute("x2", point.x);
+        line.setAttribute("y2", point.y);
+        line.setAttribute("stroke", currentColor);
+        line.setAttribute("stroke-width", currentFontSize); // Updated: Use current font size
+        line.setAttribute("stroke-linecap", "round");
+        
+        drawingArea.appendChild(line);
 
-        // Adjust the cursor position
-        cursorOverlay.style.left = `${e.pageX - brushSize.value / 2}px`;
-        cursorOverlay.style.top = `${e.pageY - brushSize.value / 2}px`;
-    }
-    
-    canvas.addEventListener("mousedown", (e) => {
-        isDrawing = true;
-        [lastX, lastY] = [e.offsetX, e.offsetY];
-    });
-    
-    canvas.addEventListener("mousemove", draw);
-    canvas.addEventListener("mouseup", () => isDrawing = false);
-    canvas.addEventListener("mouseout", () => isDrawing = false);
-    
-    clearBtn.addEventListener("click", () => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-    });
-
-    downloadBtn.addEventListener("click", () => {
-        const dataUrl = rotateAndExportCanvas();
-        const link = document.createElement('a');
-        link.href = dataUrl;
-        link.download = 'drawing.png';
-        link.click();
-    });
-
-    function rotateAndExportCanvas() {
-        const tempCanvas = document.createElement('canvas');
-        tempCanvas.width = canvas.width;
-        tempCanvas.height = canvas.height;
-        const tempCtx = tempCanvas.getContext('2d');
-
-        // Rotate the temporary canvas context
-        tempCtx.translate(canvas.width / 2, canvas.height / 2);
-        tempCtx.rotate(angleInput.value * Math.PI / 180);
-        tempCtx.translate(-canvas.width / 2, -canvas.height / 2);
-        tempCtx.drawImage(canvas, 0, 0);
-
-        // Export the rotated canvas as data URL
-        return tempCanvas.toDataURL('image/png');
+        lastX = point.x;
+        lastY = point.y;
     }
 
-    angleInput.addEventListener("input", () => {
-        canvas.style.transform = `rotate(${angleInput.value}deg)`;
-    });
+    function endDrawing() {
+        isDrawing = false;
+    }
 
-    // Add event listeners to each color button to set the color from the default colors array
-    const colorButtons = document.querySelectorAll('.color-btn');
-    colorButtons.forEach((button, index) => {
-        button.addEventListener('click', () => {
-            setColorFromDefault(index);
+    function clearDrawing() {
+        drawingArea.innerHTML = '';
+    }
+    function downloadDrawing() {
+        const svgData = new XMLSerializer().serializeToString(svgWrapper.querySelector("svg")); // Change to select the svg element within svgWrapper
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+        const img = new Image();
+    
+        img.onload = function() {
+            canvas.width = svgWrapper.getBoundingClientRect().width; // Change to svgWrapper
+            canvas.height = svgWrapper.getBoundingClientRect().height; // Change to svgWrapper
+            context.drawImage(img, 0, 0);
+    
+            const dataUrl = canvas.toDataURL("image/png");
+            const link = document.createElement("a");
+            link.href = dataUrl;
+            link.download = "drawing.png";
+            link.click();
+        };
+    
+        img.src = "data:image/svg+xml;base64," + btoa(svgData);
+    }
+
+    function setColorFromPicker() {
+        currentColor = colorPicker.value;
+        updateStrokeColor();
+    }
+
+    function setColorFromButton(button) {
+        currentColor = button.style.backgroundColor;
+        updateStrokeColor();
+    }
+
+    function updateStrokeColor() {
+        const lines = drawingArea.querySelectorAll("line");
+        lines.forEach(line => {
+            line.setAttribute("stroke", currentColor);
         });
+    }
+
+    function updateAngle() {
+        currentAngle = angleInput.value;
+        drawingArea.style.transform = `rotate(${currentAngle}deg)`; // Apply rotation to drawing area
+    }
+
+    function updateFontSize() {
+        currentFontSize = brushSize.value;
+    }
+
+    drawingArea.addEventListener("mousedown", startDrawing);
+    drawingArea.addEventListener("mousemove", draw);
+    drawingArea.addEventListener("mouseup", endDrawing);
+    drawingArea.addEventListener("mouseleave", endDrawing);
+    clearBtn.addEventListener("click", clearDrawing);
+    downloadBtn.addEventListener("click", downloadDrawing);
+    colorPicker.addEventListener("input", setColorFromPicker);
+    angleInput.addEventListener("input", updateAngle); // New: Listen for angle input changes
+    brushSize.addEventListener("input", updateStrokeWidth);
+    function updateStrokeWidth() {
+        currentFontSize = brushSize.value;
+        const lines = drawingArea.querySelectorAll("line");
+        lines.forEach(line => {
+            line.setAttribute("stroke-width", currentFontSize);
+        });
+    }
+    colorButtons.forEach(button => {
+        button.addEventListener("click", () => setColorFromButton(button));
     });
 });

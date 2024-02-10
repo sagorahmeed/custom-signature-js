@@ -21,3 +21,15 @@ canvas {
 #controls input[type="color"], #controls input[type="range"], #controls button {
   margin-right: 10px;
 }
+
+
+#drawingArea {
+  background-color: transparent;
+}
+#svgWrapper{
+  margin-top: 100px;
+  border: 1px solid black;
+  overflow: hidden;
+  max-width: 600px;
+  height: 300px;
+}
