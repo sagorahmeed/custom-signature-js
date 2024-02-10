@@ -13,8 +13,27 @@ document.addEventListener("DOMContentLoaded", function() {
     let currentFontSize = brushSize.value; // New: Store current font size
     let lastX = 0; // Initialize lastX
     let lastY = 0; // Initialize lastY
-    let pathElement; // Declare path element
+    let paths = []; // Store path elements
 
+    // function startDrawing(e) {
+    //     isDrawing = true;
+    //     const svgPoint = drawingArea.createSVGPoint();
+    //     svgPoint.x = e.clientX;
+    //     svgPoint.y = e.clientY;
+    //     const point = svgPoint.matrixTransform(drawingArea.getScreenCTM().inverse());
+    //     lastX = point.x; // Update lastX
+    //     lastY = point.y; // Update lastY
+
+    //     // Create path element and set its attributes
+    //     const pathElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    //     pathElement.setAttribute("stroke", currentColor);
+    //     pathElement.setAttribute("stroke-width", currentFontSize);
+    //     pathElement.setAttribute("stroke-linecap", "round");
+    //     pathElement.setAttribute("fill", "none");
+    //     pathElement.setAttribute("d", `M ${lastX},${lastY}`); // Initialize path data
+    //     drawingArea.appendChild(pathElement); // Append path element to drawing area
+    //     paths.push(pathElement); // Add path element to the array
+    // }
     function startDrawing(e) {
         isDrawing = true;
         const svgPoint = drawingArea.createSVGPoint();
@@ -23,15 +42,16 @@ document.addEventListener("DOMContentLoaded", function() {
         const point = svgPoint.matrixTransform(drawingArea.getScreenCTM().inverse());
         lastX = point.x; // Update lastX
         lastY = point.y; // Update lastY
-
+    
         // Create path element and set its attributes
-        pathElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        const pathElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
         pathElement.setAttribute("stroke", currentColor);
         pathElement.setAttribute("stroke-width", currentFontSize);
         pathElement.setAttribute("stroke-linecap", "round");
         pathElement.setAttribute("fill", "none");
         pathElement.setAttribute("d", `M ${lastX},${lastY}`); // Initialize path data
         drawingArea.appendChild(pathElement); // Append path element to drawing area
+        paths.push(pathElement); // Add path element to the array
     }
 
     function draw(e) {
@@ -43,8 +63,8 @@ document.addEventListener("DOMContentLoaded", function() {
         const point = svgPoint.matrixTransform(drawingArea.getScreenCTM().inverse());
 
         // Update the path data for the ongoing drawing
-        const newPathData = `${pathElement.getAttribute("d")} L ${point.x},${point.y}`;
-        pathElement.setAttribute("d", newPathData);
+        const newPathData = `${paths[paths.length - 1].getAttribute("d")} L ${point.x},${point.y}`;
+        paths[paths.length - 1].setAttribute("d", newPathData);
 
         // Update lastX and lastY for the next stroke
         lastX = point.x;
@@ -58,6 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function clearDrawing() {
         // Remove all path elements from the drawing area
         drawingArea.innerHTML = '';
+        paths = []; // Clear the paths array
     }
 
     function downloadDrawing() {
@@ -83,37 +104,45 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function setColorFromPicker() {
         currentColor = colorPicker.value;
-        drawingArea.querySelectorAll('path').forEach(path => {
+        paths.forEach(path => {
             path.setAttribute("stroke", currentColor); // Update stroke color
         });
     }
 
     function setColorFromButton(button) {
         currentColor = button.style.backgroundColor;
-        drawingArea.querySelectorAll('path').forEach(path => {
+        paths.forEach(path => {
             path.setAttribute("stroke", currentColor); // Update stroke color
         });
     }
 
     function updateAngle() {
         currentAngle = angleInput.value;
-        drawingArea.style.transform = `rotate(${currentAngle}deg)`; // Apply rotation to drawing area
+        rotatePaths(currentAngle); // Rotate all paths when angle changes
     }
-
-    // function updateFontSize() {
-    //     currentFontSize = brushSize.value;
-    //     if (pathElement) {
-    //         pathElement.setAttribute("stroke-width", currentFontSize); // Update stroke width
-    //     }
-    // }
 
     function updateFontSize() {
         currentFontSize = brushSize.value;
-        drawingArea.querySelectorAll('path').forEach(path => {
+        paths.forEach(path => {
             path.setAttribute("stroke-width", currentFontSize); // Update stroke width
         });
     }
 
+     function rotatePaths(angle) {
+        drawingArea.style.transform = `rotate(${angle}deg)`;
+     }
+    // function rotatePaths(angle) {
+    //     // Calculate the bounding box of all paths
+    //     const bbox = drawingArea.getBBox();
+    //     const centerX = bbox.x + bbox.width / 2;
+    //     const centerY = bbox.y + bbox.height / 2;
+    
+    //     // Set the rotation origin to the center of the bounding box
+    //     drawingArea.setAttribute("transform", `rotate(${angle}, ${centerX}, ${centerY})`);
+    // }
+
+
+    
     drawingArea.addEventListener("mousedown", startDrawing);
     drawingArea.addEventListener("mousemove", draw);
     drawingArea.addEventListener("mouseup", endDrawing);

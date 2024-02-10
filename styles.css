@@ -33,3 +33,16 @@ canvas {
   max-width: 600px;
   height: 300px;
 }
+
+#svgWrapper {
+  width: 500px; /* Set the desired width */
+  height: 500px; /* Set the desired height */
+  border: 1px solid black; /* Optional: Add border for visualization */
+}
+
+#drawingArea {
+  width: 100%; /* Make SVG fill its container */
+  height: 100%;
+}
+
+
