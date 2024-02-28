@@ -66,7 +66,15 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     gap: 20px;
-    margin-top: 100px;
+    
+}
+
+#signatureList.visible {
+  margin-top: 100px;
+}
+
+#signatureList{
+  margin-top: 0;
 }
 
 

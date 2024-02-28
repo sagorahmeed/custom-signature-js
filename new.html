@@ -1,0 +1,58 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="new.css">
+</head>
+
+<body>
+    <section class="signature-component">
+        <div class="wrapper">
+            <canvas id="signature-pad" class="signature-pad" width=400 height=200></canvas>
+        </div>
+        <div class="color-picker-wrapper">
+            <p class="color-picker-title">Color</p>
+            <div id="colorPickerWrapper">
+                <label for="colorPicker">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        width="12" height="12" x="0" y="0" viewBox="0 0 24 24"
+                        style="enable-background:new 0 0 512 512" xml:space="preserve" class="hovered-paths">
+                        <g>
+                            <defs>
+                                <path id="a"
+                                    d="M16.525 2.766 14.501 4.79l-.235-.233c-.72-.723-1.973-.728-2.707.007a1.912 1.912 0 0 0 0 2.7l.234.234-8.026 8.025a2.63 2.63 0 0 0-.732 2.23l-.577.58c-.607.58-.605 1.626 0 2.206.578.607 1.625.607 2.207 0l.577-.578a2.63 2.63 0 0 0 2.232-.731l8.026-8.025.233.233a1.913 1.913 0 0 0 2.707-2.706l-.232-.235 2.024-2.024c1.019-.978 1.018-2.732-.002-3.708A2.612 2.612 0 0 0 18.378 2c-.671 0-1.343.256-1.853.766zm-1.672 3.087 2.379-2.38c.611-.611 1.68-.611 2.293.003.628.602.629 1.687 0 2.29l-2.379 2.379a.499.499 0 0 0 0 .707l.586.587a.914.914 0 0 1-1.292 1.293l-4.174-4.174a.913.913 0 0 1 .006-1.292.924.924 0 0 1 1.287 0l.587.587a.501.501 0 0 0 .707 0zM3.165 19.04l.767-.768a.502.502 0 0 0 .13-.48 1.613 1.613 0 0 1 .412-1.562l8.027-8.025 2.292 2.292-8.026 8.026c-.406.406-.989.56-1.561.412a.503.503 0 0 0-.481.13l-.766.768a.513.513 0 0 1-.374.169c-.432 0-.825-.572-.42-.962z"
+                                    fill="#ffffff" opacity="1" data-original="#000000" class="hovered-path"></path>
+                            </defs>
+                            <use xlink:href="#a" fill="#000" fill-rule="evenodd"></use>
+                        </g>
+                    </svg>
+                </label>
+                <input type="color" id="colorPicker">
+            </div>
+            <button class="color-btn" style="background-color: #ff0000;"></button>
+            <button class="color-btn" style="background-color: #00ff00;"></button>
+            <button class="color-btn" style="background-color: #0000ff;"></button>
+            <button class="color-btn" style="background-color: #ffff00;"></button>
+            <button class="color-btn" style="background-color: #ff00ff;"></button>
+        </div>
+        <div class="deed-flex-row">
+            <div class="deed-flex-row">
+                <p class="color-picker-title">Width</p>
+                <input type="range" id="brushSize" min="" max="10" value="5">
+            </div>
+            <div class="deed-flex-row">
+                <p class="color-picker-title">Angle</p>
+                <input type="range" id="angle" min="0" max="360" value="0">
+            </div>
+        </div>
+        </div>
+        <button id="save-png">Save as PNG</button>
+        <button id="reset">Clear</button>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
+    <script src="new.js"></script>
+</body>
+
+</html>

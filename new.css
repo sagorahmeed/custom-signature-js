@@ -1,0 +1,87 @@
+*,
+:before,
+:after {
+  box-sizing: border-box;
+}
+
+html {
+  font: 18px "Helvetica Neue", sans-serif;
+}
+
+body {
+  text-align: center;
+}
+
+.signature-component {
+  text-align: left;
+  display: inline-block;
+  max-width: 100%;
+}
+.signature-component h1 {
+  margin-bottom: 0;
+}
+.signature-component h2 {
+  margin: 0;
+  font-size: 100%;
+}
+.signature-component button {
+  padding: 1em;
+  background: transparent;
+  box-shadow: 2px 2px 4px #777;
+  margin-top: 0.5em;
+  border: 1px solid #777;
+  font-size: 1rem;
+}
+.signature-component button.toggle {
+  background: rgba(255, 0, 0, 0.2);
+}
+.signature-component canvas {
+  display: block;
+  position: relative;
+}
+.signature-component img {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.wrapper {
+  border: 2px solid #000;
+  overflow: hidden;
+}
+
+#controls {
+  margin-top: 10px;
+}
+
+#controls input[type="color"],
+#controls input[type="range"] {
+  margin-right: 10px;
+}
+
+#clearBtn,
+#downloadBtn {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.wrapper {
+    position: relative;
+    width: 400px;
+    height: 200px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  .signature-pad {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width:400px;
+    height:200px;
+    background-color: white;
+  }
+
+  

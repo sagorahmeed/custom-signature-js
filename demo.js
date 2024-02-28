@@ -61,37 +61,82 @@ function generateSignatures() {
             downloadLink.download = `signature_${font.replaceAll(' ', '_')}.png`;
             downloadLink.textContent = 'Download Signature';
             downloadLink.classList.add('download-btn');
-            footer.appendChild(downloadLink);
+            footer.appendChild(downloadLink); 
 
             signatureItem.appendChild(footer);
 
             signatureList.appendChild(signatureItem);
         });
     }
+
+     // Toggle the visibility of the signature list
+     if (signatureList.children.length > 0) {
+        signatureList.classList.add('visible');
+    } else {
+        signatureList.classList.remove('visible');
+    }
 }
+
+// function generatePNG(text, font, color) {
+//     const canvas = document.createElement('canvas');
+//     const context = canvas.getContext('2d');
+
+//     // Set font size and style
+//     context.font = `56.25px ${font}`; // Include font family here
+
+//     // Measure text dimensions
+//     const textMetrics = context.measureText(text);
+
+//     // Add padding to the canvas width and height
+//     const padding = 24; // Adjust as needed
+    
+
+//     // Clear canvas and draw text
+//     context.clearRect(0, 0, canvas.width, canvas.height);
+//     context.fillStyle = color;
+//     context.font = `${font}`; // Include font family here
+//     context.fillText(text, padding, canvas.height / 2);
+
+//     return canvas.toDataURL().replace(/^data:image\/(png|jpg);base64,/, '');
+// }
+
 
 function generatePNG(text, font, color) {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
 
     // Set font size and style
-    context.font = `56.25px ${font}`; // Include font family here
+    const fontSize = 56.25;
+    context.font = `${fontSize}px ${font}`;
 
     // Measure text dimensions
     const textMetrics = context.measureText(text);
+    const textWidth = textMetrics.width;
 
     // Add padding to the canvas width and height
-    const padding = 24; // Adjust as needed
-    
+    const paddingX = 60;
+    const paddingY = 30;
+    const canvasWidth = textWidth + 2 * paddingX;
+    const canvasHeight = fontSize + 2 * paddingY;
+
+    // Set canvas dimensions
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
 
     // Clear canvas and draw text
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.fillStyle = color;
-    context.font = `${font}`; // Include font family here
-    context.fillText(text, padding, canvas.height / 2);
+    context.font = `${fontSize}px ${font}`;
+
+    // Calculate the vertical position to center the text within the canvas
+    const textVerticalPosition = (canvasHeight - fontSize) / 2 + fontSize;
+
+    // Draw text
+    context.fillText(text, paddingX, textVerticalPosition);
 
     return canvas.toDataURL().replace(/^data:image\/(png|jpg);base64,/, '');
 }
+
 
 function clearData() {
     inputText.value = '';
